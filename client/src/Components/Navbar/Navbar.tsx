@@ -17,6 +17,7 @@ const Navbar: React.FC = () => {
     >
       <Box sx={{ marginLeft: "20px" }}>
         <DirectionsBikeIcon sx={{ color: "yellow" }} />
+        <DirectionsBikeIcon sx={{ color: "yellow", marginLeft: "10px" }} />
       </Box>
 
       <Box

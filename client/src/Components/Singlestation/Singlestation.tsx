@@ -1,7 +1,6 @@
-import Tablegrid from "../Table/Table";
 import { Box } from "@mui/material";
 
-const Home: React.FC = () => {
+const Singlestation: React.FC = () => {
   return (
     <Box
       sx={{
@@ -9,12 +8,9 @@ const Home: React.FC = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        margin: "20px",
       }}
-    >
-      <Tablegrid />
-    </Box>
+    ></Box>
   );
 };
 
-export default Home;
+export default Singlestation;
