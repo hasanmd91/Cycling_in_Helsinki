@@ -1,14 +1,14 @@
 import mongoose from "mongoose";
 
 export const journeySchema = mongoose.Schema({
-  Departure: String,
-  Return: String,
-  DepartureStationId: Number,
-  DepartureStationName: String,
-  ReturnStationId: Number,
-  ReturnStationName: String,
-  CoveredDistance: Number,
+  Departure_time: String,
+  Return_time: String,
+  Departure_Station_Id: Number,
+  Departure_Station_Name: String,
+  Return_Station_Id: Number,
+  Return_Station_Name: String,
+  Covered_Distance: Number,
   Duration: Number,
 });
 
-const journeyDetails = mongoose.model("journeyDetails", journeySchema);
+export const journey_detail = mongoose.model("journey_detail", journeySchema);
