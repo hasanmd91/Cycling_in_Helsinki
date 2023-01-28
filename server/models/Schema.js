@@ -11,4 +11,4 @@ export const journeySchema = mongoose.Schema({
   Duration: Number,
 });
 
-export const journey_detail = mongoose.model("journey_detail", journeySchema);
+export const journey_details = mongoose.model("journey_details", journeySchema);

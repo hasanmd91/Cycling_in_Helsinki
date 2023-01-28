@@ -1,8 +1,8 @@
-import { journey_detail } from "../models/Schema.js";
+import { journey_details } from "../models/Schema.js";
 
 export const getJourneyDetails = async (req, res) => {
   try {
-    const JourneyDetails = await journey_detail.find().limit(10);
+    const JourneyDetails = await journey_details.find().limit(1);
 
     if (!JourneyDetails) {
       return res.status(404).json({ message: "Journey Details not found" });

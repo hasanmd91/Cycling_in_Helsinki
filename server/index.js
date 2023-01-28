@@ -24,7 +24,7 @@ mongoose
   )
   .catch((error) => console.log(error));
 
-mongoose.set();
+mongoose.set("strictQuery", false);
 
 mongoose.connection.on("open", () => {
   console.log("Mongoose connected.");
