@@ -2,7 +2,9 @@ import { journey_details, station_details } from "../models/Schema.js";
 
 export const getJourneyDetails = async (req, res) => {
   try {
-    const JourneyDetails = await journey_details.find({}).limit(1000);
+    const JourneyDetails = await journey_details
+      .find({ Departure_Station_Id: 43 })
+      .limit(1000);
 
     if (!JourneyDetails) {
       return res.status(404).json({ message: "Journey Details not found" });
@@ -16,7 +18,7 @@ export const getJourneyDetails = async (req, res) => {
 
 export const getStationDetails = async (req, res) => {
   try {
-    const stationListDetails = await station_details.find({});
+    const stationListDetails = await station_details.find({ Id: 43 });
     if (!station_details) {
       return res.status(404).json({ message: "station lists not found" });
     }
