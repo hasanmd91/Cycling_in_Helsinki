@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 
-export const journeySchema = mongoose.Schema({
+// journey details schema
+
+const journeySchema = mongoose.Schema({
   Departure_time: String,
   Return_time: String,
   Departure_Station_Id: Number,
@@ -12,3 +14,22 @@ export const journeySchema = mongoose.Schema({
 });
 
 export const journey_details = mongoose.model("journey_details", journeySchema);
+
+// station schema
+
+const stationListSchema = mongoose.Schema({
+  Fid: Number,
+  Id: Number,
+  Nimi: String,
+  Osoite: String,
+  Adress: String,
+  kaupunki: String,
+  Kapasiteet: Number,
+  x: Number,
+  y: Number,
+});
+
+export const station_details = mongoose.model(
+  "station_details",
+  stationListSchema
+);
