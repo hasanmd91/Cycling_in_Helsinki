@@ -1,8 +1,9 @@
 import { journey_details, station_details } from "../models/Schema.js";
+import async from "async";
 
 export const getJourneyDetails = async (req, res) => {
   try {
-    const JourneyDetails = await journey_details.find().limit(1000);
+    const JourneyDetails = await journey_details.find().limit(100);
 
     if (!JourneyDetails) {
       return res.status(404).json({ message: "Journey Details not found" });
@@ -14,7 +15,7 @@ export const getJourneyDetails = async (req, res) => {
   }
 };
 
-export const getStationDetails = async (req, res) => {
+export const getStationListDetails = async (req, res) => {
   try {
     const stationListDetails = await station_details.find();
     if (!station_details) {
@@ -25,4 +26,77 @@ export const getStationDetails = async (req, res) => {
     console.error(error);
     res.status(500).json({ message: " Error retriving station list" });
   }
+};
+
+export const getStationDetails = async (req, res) => {
+  const { station } = req.params;
+
+  async.parallel(
+    {
+      departureJourneys: (callback) =>
+        journey_details
+          .countDocuments({ Departure_Station_Name: station })
+          .exec(callback),
+      returnJourneys: (callback) =>
+        journey_details
+          .countDocuments({ Return_Station_Name: station })
+          .exec(callback),
+      stationListDetails: (callback) =>
+        station_details.find({ Nimi: station }).exec(callback),
+
+      averageDepartureDistance: (callback) =>
+        journey_details
+          .aggregate([
+            {
+              $match: {
+                $or: [{ Departure_Station_Name: station }],
+              },
+            },
+            {
+              $group: {
+                _id: null,
+                averageDepartureDistance: { $avg: "$Distance" },
+              },
+            },
+          ])
+          .exec(callback),
+
+      averageReturnDistance: (callback) =>
+        journey_details
+          .aggregate([
+            {
+              $match: {
+                $or: [{ Return_Station_Name: station }],
+              },
+            },
+            {
+              $group: {
+                _id: null,
+                averageReturnDistance: { $avg: "$Distance" },
+              },
+            },
+          ])
+          .exec(callback),
+    },
+    (err, results) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send(err);
+      }
+      const simplifiedResult = {
+        stationListDetails: results.stationListDetails[0],
+        departureJourneys: results.departureJourneys,
+        returnJourneys: results.returnJourneys,
+        averageDepartureDistance: results.averageDepartureDistance[0]
+          ? results.averageDepartureDistance[0].averageDepartureDistance
+          : 0,
+        averageReturnDistance: results.averageReturnDistance[0]
+          ? results.averageReturnDistance[0].averageReturnDistance
+          : 0,
+      };
+
+      console.log(simplifiedResult);
+      return res.json(simplifiedResult);
+    }
+  );
 };

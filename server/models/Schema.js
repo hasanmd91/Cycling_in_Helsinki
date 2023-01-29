@@ -9,8 +9,8 @@ const journeySchema = mongoose.Schema({
   Departure_Station_Name: { type: String, trim: true },
   Return_Station_Id: { type: Number, trim: true },
   Return_Station_Name: { type: String, trim: true },
-  Covered_Distance: { type: Number, trim: true },
-  Duration_of_journey: { type: Number, trim: true },
+  Distance: { type: Number, trim: true },
+  Duration: { type: Number, trim: true },
 });
 
 export const journey_details = mongoose.model("journey_details", journeySchema);
