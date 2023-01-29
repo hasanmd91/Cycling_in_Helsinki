@@ -6,22 +6,26 @@ import { getJourneyDetails } from "../../Api";
 interface JourneyDetail {
   Departure_time: String;
   Return_time: String;
-  Departure_Station_Id: Number;
+  Departure_Station_Id: number;
   Departure_Station_Name: String;
-  Return_Station_Id: Number;
+  Return_Station_Id: number;
   Return_Station_Name: String;
-  Covered_Distance: Number;
-  Duration: Number;
+  Distance: number;
+  Duration: number;
 }
 
 interface props {}
 
 const Home: React.FC<props> = () => {
   const [journeyDetails, setJourneyDetails] = useState<JourneyDetail[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  // const [currentPage, setCurrentPage] = useState<number>(1);
+  // const [detailsPerPage, setDetailsPerPage] = useState<number>(10);
 
   const getjourneyData = async () => {
     const { data } = await getJourneyDetails();
     setJourneyDetails(data);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -38,7 +42,7 @@ const Home: React.FC<props> = () => {
         margin: "20px",
       }}
     >
-      <Tablegrid journeyDetails={journeyDetails} />
+      <Tablegrid journeyDetails={journeyDetails} loading={loading} />
     </Box>
   );
 };
