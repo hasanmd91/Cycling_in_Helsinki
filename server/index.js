@@ -12,7 +12,11 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
+// Use router for handling requests
+
 app.use("/", router);
+
+// Connect to MongoDB using the connection URL specified in the .env file
 
 mongoose
   .connect(process.env.CONNECTION_URL, {
@@ -25,6 +29,8 @@ mongoose
   .catch((error) => console.log(error));
 
 mongoose.set("strictQuery", false);
+
+// Log a message when Mongoose is connected
 
 mongoose.connection.on("open", () => {
   console.log("Mongoose connected.");

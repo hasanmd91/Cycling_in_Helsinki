@@ -1,6 +1,8 @@
 import { journey_details, station_details } from "../models/Schema.js";
 import async from "async";
 
+// This function retrieves all journey details from the journey_details collection and returns them in a JSON format
+
 export const getJourneyDetails = async (req, res) => {
   try {
     const JourneyDetails = await journey_details.find().limit(100);
@@ -15,6 +17,8 @@ export const getJourneyDetails = async (req, res) => {
   }
 };
 
+// This function retrieves all station details from the station_details collection and returns them in a JSON format
+
 export const getStationListDetails = async (req, res) => {
   try {
     const stationListDetails = await station_details.find();
@@ -28,8 +32,12 @@ export const getStationListDetails = async (req, res) => {
   }
 };
 
+// This function retrieves all details of a specific station from the journey_details and station_details collections
+
 export const getStationDetails = async (req, res) => {
   const { station } = req.params;
+
+  // Use async.parallel to run multiple database queries at the same time
 
   async.parallel(
     {
@@ -83,6 +91,9 @@ export const getStationDetails = async (req, res) => {
         console.error(err);
         return res.status(500).send(err);
       }
+
+      // simplifiedResult  retunrs simplified version of results easily map them
+
       const simplifiedResult = {
         stationListDetails: results.stationListDetails[0],
         departureJourneys: results.departureJourneys,

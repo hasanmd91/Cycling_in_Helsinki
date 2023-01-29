@@ -15,7 +15,7 @@ const journeySchema = mongoose.Schema({
 
 export const journey_details = mongoose.model("journey_details", journeySchema);
 
-// station schema
+// station details schema
 
 const stationListSchema = mongoose.Schema({
   Fid: { type: Number, trim: true },
