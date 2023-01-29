@@ -28,7 +28,7 @@ const Navbar: React.FC = () => {
           marginRight: "30px",
         }}
       >
-        <NavLink to="/home" style={{ textDecoration: "none" }}>
+        <NavLink to="/" style={{ textDecoration: "none" }}>
           <Typography variant="h5" align="center" color="#f5f5f5">
             Home
           </Typography>

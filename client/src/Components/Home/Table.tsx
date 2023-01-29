@@ -1,26 +1,11 @@
 import Paper from "@mui/material/Paper";
-
-interface journeyDetail {
-  Departure_time: String;
-  Return_time: String;
-  Departure_Station_Id: number;
-  Departure_Station_Name: String;
-  Return_Station_Id: number;
-  Return_Station_Name: String;
-  Distance: number;
-  Duration: number;
-}
+import { JourneyDetail } from "./Home";
 
 interface props {
-  journeyDetails: journeyDetail[];
-  loading: boolean;
+  journeyDetails: JourneyDetail[];
 }
 
-const Tablegrid: React.FC<props> = ({ journeyDetails, loading }) => {
-  if (loading) {
-    return <h1> Data is Loading....</h1>;
-  }
-
+const Tablegrid: React.FC<props> = ({ journeyDetails }) => {
   return (
     <Paper>
       <table className="table table-striped">
@@ -35,8 +20,8 @@ const Tablegrid: React.FC<props> = ({ journeyDetails, loading }) => {
           </tr>
         </thead>
         <tbody>
-          {journeyDetails.map((journey) => (
-            <tr>
+          {journeyDetails.map((journey, index) => (
+            <tr key={index}>
               <td>{journey.Departure_Station_Name}</td>
               <td>{journey.Departure_time}</td>
               <td>{journey.Return_Station_Name}</td>

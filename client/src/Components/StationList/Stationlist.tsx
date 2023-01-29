@@ -1,6 +1,34 @@
-import { Box } from "@mui/material";
+import { Box, CircularProgress } from "@mui/material";
+import { useState, useEffect } from "react";
+import { getStationDetails } from "../../Api/index";
+import Table from "./Table";
 
-const Stationlist = () => {
+export interface Stations {
+  Fid: number;
+  Id: number;
+  Nimi: String;
+  Osoite: String;
+  Adress: String;
+  kaupunki: String;
+  Kapasiteet: number;
+  x: number;
+  y: number;
+}
+
+interface props {}
+
+const Stationlist: React.FC<props> = () => {
+  const [stationList, setStationList] = useState<Stations[]>([]);
+
+  const getStationList = async () => {
+    const { data } = await getStationDetails();
+    setStationList(data);
+  };
+
+  useEffect(() => {
+    getStationList();
+  }, []);
+
   return (
     <Box
       sx={{
@@ -10,7 +38,14 @@ const Stationlist = () => {
         alignItems: "center",
         margin: "20px",
       }}
-    ></Box>
+    >
+      {" "}
+      {!stationList.length ? (
+        <CircularProgress />
+      ) : (
+        <Table stationList={stationList} />
+      )}
+    </Box>
   );
 };
 

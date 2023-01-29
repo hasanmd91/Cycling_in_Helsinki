@@ -1,9 +1,9 @@
-import Tablegrid from "../Table/Table";
-import { Box } from "@mui/material";
+import Tablegrid from "./Table";
+import { Box, CircularProgress } from "@mui/material";
 import { useEffect, useState } from "react";
 import { getJourneyDetails } from "../../Api";
 
-interface JourneyDetail {
+export interface JourneyDetail {
   Departure_time: String;
   Return_time: String;
   Departure_Station_Id: number;
@@ -18,14 +18,13 @@ interface props {}
 
 const Home: React.FC<props> = () => {
   const [journeyDetails, setJourneyDetails] = useState<JourneyDetail[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+
   // const [currentPage, setCurrentPage] = useState<number>(1);
   // const [detailsPerPage, setDetailsPerPage] = useState<number>(10);
 
   const getjourneyData = async () => {
     const { data } = await getJourneyDetails();
     setJourneyDetails(data);
-    setLoading(false);
   };
 
   useEffect(() => {
@@ -42,7 +41,11 @@ const Home: React.FC<props> = () => {
         margin: "20px",
       }}
     >
-      <Tablegrid journeyDetails={journeyDetails} loading={loading} />
+      {!journeyDetails.length ? (
+        <CircularProgress />
+      ) : (
+        <Tablegrid journeyDetails={journeyDetails} />
+      )}
     </Box>
   );
 };
