@@ -10,7 +10,7 @@ const journeySchema = mongoose.Schema({
   Return_Station_Id: Number,
   Return_Station_Name: String,
   Covered_Distance: Number,
-  Duration: Number,
+  Duration_of_journey: Number,
 });
 
 export const journey_details = mongoose.model("journey_details", journeySchema);
