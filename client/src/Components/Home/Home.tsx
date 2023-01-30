@@ -13,9 +13,7 @@ interface JourneyDetail {
   Duration: number;
 }
 
-interface props {}
-
-const Home: React.FC<props> = () => {
+const Home: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [itemsPerPage, setItemsPerPage] = useState<number>(20);
   const [journeyDetails, setJourneyDetails] = useState<JourneyDetail[]>([]);
