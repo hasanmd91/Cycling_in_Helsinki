@@ -4,7 +4,6 @@ const Footer: React.FC = () => {
   return (
     <AppBar
       position="static"
-      color="primary"
       sx={{
         height: "160px",
         display: "flex",
@@ -12,6 +11,7 @@ const Footer: React.FC = () => {
         justifyContent: "space-between",
         alignItems: "center",
         padding: "15px",
+        background: "#fafafa",
       }}
     >
       <Box

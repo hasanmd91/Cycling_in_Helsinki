@@ -6,13 +6,13 @@ const Navbar: React.FC = () => {
   return (
     <AppBar
       position="static"
-      color="primary"
       sx={{
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
         padding: "15px",
+        background: "black",
       }}
     >
       <Box sx={{ marginLeft: "20px" }}>

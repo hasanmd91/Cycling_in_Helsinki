@@ -1,6 +1,6 @@
 import { Box, CircularProgress } from "@mui/material";
 import { useEffect, useState } from "react";
-import { getJourneyDetails } from "../../Api";
+import axios from "axios";
 
 interface JourneyDetail {
   Departure_time: String;
@@ -15,10 +15,6 @@ interface JourneyDetail {
 
 interface props {}
 
-interface JourneyDetailsResponse {
-  data: JourneyDetail[];
-}
-
 const Home: React.FC<props> = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [itemsPerPage, setItemsPerPage] = useState<number>(20);
@@ -29,10 +25,10 @@ const Home: React.FC<props> = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch(
+      const { data } = await axios.get(
         `http://localhost:3001/?page=${currentPage}&perPage=${itemsPerPage}`
       );
-      const data = await res.json();
+
       setJourneyDetails(data);
     };
 
@@ -54,7 +50,7 @@ const Home: React.FC<props> = () => {
       ) : (
         <div>
           {" "}
-          <table className="table">
+          <table className="table table-striped">
             <thead>
               <tr>
                 <th> Departure_Station_Id</th>
