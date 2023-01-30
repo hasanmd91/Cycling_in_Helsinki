@@ -5,7 +5,13 @@ import async from "async";
 
 export const getJourneyDetails = async (req, res) => {
   try {
-    const JourneyDetails = await journey_details.find().limit(100);
+    const page = parseInt(req.query.page) || 1;
+    const perPage = parseInt(req.query.perPage) || 20;
+
+    const JourneyDetails = await journey_details
+      .find()
+      .skip((page - 1) * perPage)
+      .limit(perPage);
 
     if (!JourneyDetails) {
       return res.status(404).json({ message: "Journey Details not found" });
