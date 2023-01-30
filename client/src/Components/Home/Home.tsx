@@ -54,7 +54,7 @@ const Home: React.FC<props> = () => {
       ) : (
         <div>
           {" "}
-          <table>
+          <table className="table">
             <thead>
               <tr>
                 <th> Departure_Station_Id</th>
