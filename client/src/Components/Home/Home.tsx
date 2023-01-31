@@ -20,22 +20,37 @@ const Home: React.FC = () => {
   const [pageNumber, setPageNumber] = useState<number[]>([
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
   ]);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
       const { data } = await axios.get(
-        `http://localhost:3001/?page=${currentPage}&perPage=${itemsPerPage}`
+        `http://localhost:3001/?page=${currentPage}&perPage=${itemsPerPage}&search=${searchQuery}
+        `
       );
-
       setJourneyDetails(data);
     };
 
     fetchData();
-  }, [currentPage, itemsPerPage]);
+  }, [currentPage, itemsPerPage, searchQuery]);
 
   if (!journeyDetails.length) return <CircularProgress />;
   return (
     <div className="container mt-5">
+      <div className="input-group mb-3">
+        <span className="input-group-text" id="inputGroup-sizing-default">
+          Search
+        </span>
+        <input
+          placeholder=" Enter Station Name"
+          type="text"
+          className="form-control"
+          aria-label="Sizing example input"
+          aria-describedby="inputGroup-sizing-default"
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+      </div>
+
       <table className="table table-striped table-bordered">
         <thead>
           <tr>

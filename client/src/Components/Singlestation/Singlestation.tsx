@@ -96,6 +96,7 @@ const SingleStation: React.FC = () => {
           <Map
             x={station.stationListDetails.x}
             y={station.stationListDetails.y}
+            title={station.stationListDetails.Nimi}
           />
 
           <Button

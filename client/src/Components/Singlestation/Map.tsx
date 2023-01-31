@@ -1,22 +1,23 @@
 import { useMemo } from "react";
-import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+import { GoogleMap, useLoadScript, MarkerF } from "@react-google-maps/api";
 import { CircularProgress } from "@mui/material";
 
 interface props {
   x: number;
   y: number;
+  title: string;
 }
 
-const Map: React.FC<props> = ({ x, y }) => {
+const Map: React.FC<props> = ({ x, y, title }) => {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: "AIzaSyBcoxSMxAWa8QurUTzORx-9GQLqr84wqbg",
   });
 
   if (!isLoaded) return <CircularProgress />;
-  return <LocationMap x={x} y={y} />;
+  return <LocationMap x={x} y={y} title={title} />;
 };
 
-const LocationMap: React.FC<props> = ({ x, y }) => {
+const LocationMap: React.FC<props> = ({ x, y, title }) => {
   const center = useMemo(() => ({ lng: x, lat: y }), []);
 
   return (
@@ -29,7 +30,7 @@ const LocationMap: React.FC<props> = ({ x, y }) => {
         marginBottom: "10px",
       }}
     >
-      <Marker position={center} />
+      <MarkerF position={center} title={title} />
     </GoogleMap>
   );
 };
