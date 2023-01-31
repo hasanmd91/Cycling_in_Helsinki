@@ -7,15 +7,19 @@ export const getJourneyDetails = async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1;
     const perPage = parseInt(req.query.perPage) || 20;
+    const search = req.query.search || "";
 
-    const JourneyDetails = await journey_details
-      .find()
+    let JourneyDetails = await journey_details
+      .find({
+        Departure_Station_Name: { $regex: search, $options: "i" },
+      })
       .skip((page - 1) * perPage)
       .limit(perPage);
 
-    if (!JourneyDetails) {
-      return res.status(404).json({ message: "Journey Details not found" });
+    if (!JourneyDetails.length) {
+      JourneyDetails = await journey_details.find().limit(perPage);
     }
+
     res.status(200).json(JourneyDetails);
   } catch (error) {
     console.error(error);
@@ -42,6 +46,8 @@ export const getStationListDetails = async (req, res) => {
 
 export const getStationDetails = async (req, res) => {
   const { station } = req.params;
+
+  console.log(station);
 
   // Use async.parallel to run multiple database queries at the same time
 
@@ -112,7 +118,6 @@ export const getStationDetails = async (req, res) => {
           : 0,
       };
 
-      console.log(simplifiedResult);
       return res.json(simplifiedResult);
     }
   );
