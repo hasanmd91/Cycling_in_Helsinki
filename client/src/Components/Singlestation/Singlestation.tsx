@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Box, CircularProgress, Paper } from "@mui/material";
-import { useParams } from "react-router-dom";
+import { Box, CircularProgress, Button } from "@mui/material";
+import { useParams, useNavigate } from "react-router-dom";
 import { getSingleStation } from "../../Api";
 import Map from "./Map";
 
@@ -27,6 +27,7 @@ interface Station {
 const SingleStation: React.FC = () => {
   const [station, setStation] = useState<Station | null>(null);
   const { singlestation } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,7 +39,7 @@ const SingleStation: React.FC = () => {
   }, [singlestation]);
 
   return (
-    <Box sx={{ minHeight: "100vh" }}>
+    <Box sx={{ minHeight: "100vh", padding: "10px" }}>
       {!station ? (
         <CircularProgress />
       ) : (
@@ -86,14 +87,25 @@ const SingleStation: React.FC = () => {
                 <td>{station.averageReturnDistance.toFixed(2)}</td>
               </tr>
             </tbody>
-
-            <p> **This data is based on 2.10.2022</p>
           </table>
+          <p style={{ fontSize: "10px", marginTop: "5px" }}>
+            @Data source Helsinki City Bike, covers the period of May to July
+            2021.
+          </p>
 
           <Map
             x={station.stationListDetails.x}
             y={station.stationListDetails.y}
           />
+
+          <Button
+            variant="contained"
+            size="large"
+            color="primary"
+            onClick={() => navigate(-1)}
+          >
+            Back
+          </Button>
         </div>
       )}
     </Box>

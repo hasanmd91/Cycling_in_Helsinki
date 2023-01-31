@@ -8,26 +8,23 @@ const Navbar: React.FC = () => {
       position="static"
       sx={{
         display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: "15px",
-        background: "black",
+        justifyContent: "center",
+        width: "100%",
+        height: "65px",
+        backgroundColor: "black",
       }}
     >
-      <Box sx={{ marginLeft: "20px" }}>
-        <DirectionsBikeIcon sx={{ color: "yellow" }} />
-        <DirectionsBikeIcon sx={{ color: "yellow", marginLeft: "10px" }} />
-      </Box>
-
       <Box
         sx={{
+          width: "90%",
           display: "flex",
           flexDirection: "row",
+          justifyContent: "flex-end",
           gap: "20px",
-          marginRight: "30px",
         }}
       >
+        <DirectionsBikeIcon sx={{ color: "yellow" }} />
+        <DirectionsBikeIcon sx={{ color: "yellow", marginLeft: "10px" }} />
         <NavLink to="/" style={{ textDecoration: "none" }}>
           <Typography variant="h5" align="center" color="#f5f5f5">
             Home

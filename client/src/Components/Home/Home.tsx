@@ -33,66 +33,53 @@ const Home: React.FC = () => {
     fetchData();
   }, [currentPage, itemsPerPage]);
 
+  if (!journeyDetails.length) return <CircularProgress />;
   return (
-    <Box
-      sx={{
-        minHeight: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        margin: "20px",
-      }}
-    >
-      {!journeyDetails.length ? (
-        <CircularProgress />
-      ) : (
-        <div>
-          {" "}
-          <table className="table table-striped table-bordered">
-            <thead>
-              <tr>
-                <th> Departure_Station_Id</th>
-                <th> Departure_Station_Name</th>
-                <th> Departure_time</th>
-                <th> Distance</th>
-                <th> Duration</th>
-                <th> Return_Station_Id</th>
-                <th> Return_Station_Name</th>
-                <th> Return_time</th>
-              </tr>
-            </thead>
-            <tbody>
-              {journeyDetails.map((item, index) => (
-                <tr key={index}>
-                  <td>{item.Departure_Station_Id}</td>
-                  <td>{item.Departure_Station_Name}</td>
-                  <td>{item.Departure_time}</td>
-                  <td>{item.Distance}</td>
-                  <td>{item.Duration}</td>
-                  <td>{item.Return_Station_Id}</td>
-                  <td>{item.Return_Station_Name}</td>
-                  <td>{item.Return_time}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <div>
-            {pageNumber.map((number) => (
-              <button key={number} onClick={() => setCurrentPage(number)}>
-                {number}
-              </button>
-            ))}
+    <div className="container mt-5">
+      <table className="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th> Departure Station Id</th>
+            <th> Departure Station Name</th>
+            <th> Departure time</th>
+            <th> Distance</th>
+            <th> Duration</th>
+            <th> Return Station Id</th>
+            <th> Return Station Name</th>
+            <th> Return time</th>
+          </tr>
+        </thead>
+        <tbody>
+          {journeyDetails.map((item, index) => (
+            <tr key={index}>
+              <td>{item.Departure_Station_Id}</td>
+              <td>{item.Departure_Station_Name}</td>
+              <td>{item.Departure_time}</td>
+              <td>{item.Distance}</td>
+              <td>{item.Duration}</td>
+              <td>{item.Return_Station_Id}</td>
+              <td>{item.Return_Station_Name}</td>
+              <td>{item.Return_time}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <div>
+        {pageNumber.map((number) => (
+          <button key={number} onClick={() => setCurrentPage(number)}>
+            {number}
+          </button>
+        ))}
 
-            <button onClick={() => setCurrentPage(currentPage - 1)}>
-              Previous
-            </button>
-            <button onClick={() => setCurrentPage(currentPage + 1)}>
-              Next
-            </button>
-          </div>
-        </div>
-      )}
-    </Box>
+        <button onClick={() => setCurrentPage(currentPage - 1)}>
+          Previous
+        </button>
+        <button onClick={() => setCurrentPage(currentPage + 1)}>Next</button>
+      </div>
+      <p style={{ fontSize: "10px", marginTop: "5px" }}>
+        @Data source Helsinki City Bike, covers the period of May to July 2021.
+      </p>
+    </div>
   );
 };
 

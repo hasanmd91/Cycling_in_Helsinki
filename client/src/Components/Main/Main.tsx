@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 
 const Main: React.FC = () => {
   return (
-    <main>
+    <main style={{ minHeight: " 100vh" }}>
       <Outlet />
     </main>
   );

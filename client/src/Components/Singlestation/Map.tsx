@@ -23,7 +23,11 @@ const LocationMap: React.FC<props> = ({ x, y }) => {
     <GoogleMap
       zoom={15}
       center={center}
-      mapContainerStyle={{ width: "100%", height: "400px" }}
+      mapContainerStyle={{
+        width: "100%",
+        height: "400px",
+        marginBottom: "10px",
+      }}
     >
       <Marker position={center} />
     </GoogleMap>
