@@ -48,7 +48,7 @@ const Home: React.FC = () => {
       ) : (
         <div>
           {" "}
-          <table className="table table-striped">
+          <table className="table table-striped table-bordered">
             <thead>
               <tr>
                 <th> Departure_Station_Id</th>

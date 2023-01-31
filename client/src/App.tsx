@@ -14,7 +14,6 @@ const App = () => {
           <Route index element={<Home />} />
           <Route path="/stations" element={<Stationlist />} />
           <Route path="/stations/:singlestation" element={<Singlestation />} />
-          <Route path="/about" element={<About />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -44,7 +44,7 @@ const Stationlist: React.FC<props> = () => {
         <CircularProgress />
       ) : (
         <Paper>
-          <table className="table table-striped">
+          <table className="table table-striped table-bordered">
             <thead>
               <tr>
                 <th scope="col"> Fid</th>

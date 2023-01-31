@@ -39,12 +39,6 @@ const Navbar: React.FC = () => {
             Stations
           </Typography>
         </NavLink>
-
-        <NavLink to="/about" style={{ textDecoration: "none" }}>
-          <Typography variant="h5" align="center" color="#f5f5f5">
-            About
-          </Typography>
-        </NavLink>
       </Box>
     </AppBar>
   );

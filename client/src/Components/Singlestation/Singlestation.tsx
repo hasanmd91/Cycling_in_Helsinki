@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Box, CircularProgress } from "@mui/material";
+import { Box, CircularProgress, Paper } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { getSingleStation } from "../../Api";
+import Map from "./Map";
 
 interface StationDetails {
   Fid: number;
@@ -89,7 +90,10 @@ const SingleStation: React.FC = () => {
             <p> **This data is based on 2.10.2022</p>
           </table>
 
-          <div></div>
+          <Map
+            x={station.stationListDetails.x}
+            y={station.stationListDetails.y}
+          />
         </div>
       )}
     </Box>
