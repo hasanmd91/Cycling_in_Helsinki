@@ -60,7 +60,7 @@ const SingleStation: React.FC = () => {
                 <td>{station.stationListDetails.Id} </td>
               </tr>
               <tr>
-                <td>Address</td>
+                <td>Station Address</td>
                 <td>
                   {station.stationListDetails.Adress}{" "}
                   {station.stationListDetails.Kaupunki}
@@ -78,13 +78,19 @@ const SingleStation: React.FC = () => {
                 <td>Return Journeys</td>
                 <td>{station.returnJourneys}</td>
               </tr>
+
               <tr>
                 <td>Average Departure Distance</td>
-                <td>{station.averageDepartureDistance.toFixed(2)}</td>
+                <td>
+                  {(station.averageDepartureDistance / 1000).toFixed(2)}{" "}
+                  kilometer
+                </td>
               </tr>
               <tr>
                 <td>Average Return Distance</td>
-                <td>{station.averageReturnDistance.toFixed(2)}</td>
+                <td>
+                  {(station.averageReturnDistance / 1000).toFixed(2)} kilometer
+                </td>
               </tr>
             </tbody>
           </table>

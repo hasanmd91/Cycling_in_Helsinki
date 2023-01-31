@@ -17,9 +17,7 @@ const Home: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [itemsPerPage, setItemsPerPage] = useState<number>(20);
   const [journeyDetails, setJourneyDetails] = useState<JourneyDetail[]>([]);
-  const [pageNumber, setPageNumber] = useState<number[]>([
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-  ]);
+  const [pageNumber, setPageNumber] = useState<number[]>([1, 2, 3, 4, 5]);
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
@@ -70,8 +68,8 @@ const Home: React.FC = () => {
               <td>{item.Departure_Station_Id}</td>
               <td>{item.Departure_Station_Name}</td>
               <td>{item.Departure_time}</td>
-              <td>{item.Distance}</td>
-              <td>{item.Duration}</td>
+              <td>{(item.Distance / 1000).toFixed(2)}km</td>
+              <td>{(item.Duration / 60).toFixed(2)}min </td>
               <td>{item.Return_Station_Id}</td>
               <td>{item.Return_Station_Name}</td>
               <td>{item.Return_time}</td>
