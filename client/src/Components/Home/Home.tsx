@@ -66,15 +66,32 @@ const Home: React.FC = () => {
       </table>
       <div>
         {pageNumber.map((number) => (
-          <button key={number} onClick={() => setCurrentPage(number)}>
+          <button
+            className="btn btn-outline-dark"
+            key={number}
+            onClick={() => setCurrentPage(number)}
+          >
             {number}
           </button>
         ))}
-
-        <button onClick={() => setCurrentPage(currentPage - 1)}>
+        <button
+          className="btn btn-outline-dark"
+          onClick={() => setCurrentPage(currentPage + 1)}
+        >
+          ....
+        </button>
+        <button
+          className="btn btn-outline-dark"
+          onClick={() => setCurrentPage(currentPage - 1)}
+        >
           Previous
         </button>
-        <button onClick={() => setCurrentPage(currentPage + 1)}>Next</button>
+        <button
+          className="btn btn-outline-dark"
+          onClick={() => setCurrentPage(currentPage + 1)}
+        >
+          Next
+        </button>
       </div>
       <p style={{ fontSize: "10px", marginTop: "5px" }}>
         @Data source Helsinki City Bike, covers the period of May to July 2021.
