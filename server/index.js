@@ -19,12 +19,18 @@ app.use("/", router);
 // Connect to MongoDB using the connection URL specified in the .env file
 
 mongoose
-  .connect(process.env.CONNECTION_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+
+  .connect(
+    "mongodb+srv://hasanmd91:Hasanedge6300ii@cluster1.nwbbjzu.mongodb.net/Helsinki_city_bike",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  )
   .then(() =>
-    app.listen(3001, () => console.log(`server running on the port ${3001}`))
+    app.listen(process.env.port || 3001, () =>
+      console.log(`server running on the port `)
+    )
   )
   .catch((error) => console.log(error));
 
