@@ -31,6 +31,12 @@ const Navbar: React.FC = () => {
           </Typography>
         </NavLink>
 
+        <NavLink to="/journey" style={{ textDecoration: "none" }}>
+          <Typography variant="h5" align="center" color="#f5f5f5">
+            Journeys
+          </Typography>
+        </NavLink>
+
         <NavLink to="/stations" style={{ textDecoration: "none" }}>
           <Typography variant="h5" align="center" color="#f5f5f5">
             Stations

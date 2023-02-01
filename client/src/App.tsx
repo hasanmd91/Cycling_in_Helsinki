@@ -3,8 +3,8 @@ import { BrowserRouter } from "react-router-dom";
 import Layout from "./pages/Layout";
 import Stationlist from "./Components/StationList/Stationlist";
 import Singlestation from "./Components/Singlestation/Singlestation";
-import About from "./Components/About/About";
 import Home from "./Components/Home/Home";
+import JourneyData from "./Components/JourneyData/JourneyData";
 
 const App = () => {
   return (
@@ -12,6 +12,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
+          <Route path="/journey" element={<JourneyData />} />
           <Route path="/stations" element={<Stationlist />} />
           <Route path="/stations/:singlestation" element={<Singlestation />} />
         </Route>

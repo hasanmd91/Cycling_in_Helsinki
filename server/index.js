@@ -14,10 +14,10 @@ app.use(cors());
 
 // Use router for handling requests
 
-app.use("/", router);
+app.use("/home", router);
 
 // Connect to MongoDB using the connection URL specified in the .env file
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3001;
 
 mongoose
 
@@ -29,7 +29,7 @@ mongoose
     }
   )
   .then(() =>
-    app.listen(PORT, () => console.log(`server running on the port `))
+    app.listen(PORT, () => console.log(`server running on the port ${PORT}`))
   )
   .catch((error) => console.log(error));
 

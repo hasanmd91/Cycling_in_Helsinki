@@ -7,7 +7,7 @@ import {
 
 const router = express.Router();
 
-router.get("/", getJourneyDetails);
+router.get("/journey", getJourneyDetails);
 router.get("/stations", getStationListDetails);
 router.get("/stations/:station", getStationDetails);
 
