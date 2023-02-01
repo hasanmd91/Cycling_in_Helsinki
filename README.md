@@ -41,6 +41,7 @@ This application is a pre-assignment project for Solita dev Academy 2023. This a
 ## Demo
 
 [Live Link](https://woltassignment.netlify.app/)
+[Backend](https://helisinkicitybike.onrender.com/home/journey)
 
 
 ## Author
