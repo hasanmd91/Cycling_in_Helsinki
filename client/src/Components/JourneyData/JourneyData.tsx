@@ -23,7 +23,7 @@ const JourneyData: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       const { data } = await axios.get(
-        `http://localhost:3001/home/journey/?page=${currentPage}&perPage=${itemsPerPage}&search=${searchQuery}
+        `https://helisinkicitybike.onrender.com/home/journey/?page=${currentPage}&perPage=${itemsPerPage}&search=${searchQuery}
         `
       );
       setJourneyDetails(data);

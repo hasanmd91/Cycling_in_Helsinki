@@ -1,8 +1,11 @@
-import { CircularProgress, Paper } from "@mui/material";
+import { CircularProgress } from "@mui/material";
 import { useState, useEffect } from "react";
 import { getStationDetails } from "../../Api/index";
 import { Link } from "react-router-dom";
 import { ChangeEvent } from "react";
+import React from "react";
+import { Table } from "antd";
+import type { ColumnsType } from "antd/es/table";
 
 // Define the interface for the station data
 export interface Stations {
@@ -34,6 +37,34 @@ const Stationlist: React.FC<props> = () => {
     getStationList();
   }, []);
 
+  const columns: ColumnsType<Stations> = [
+    {
+      title: "Station Name",
+      dataIndex: "Nimi",
+      width: 100,
+      fixed: "left",
+    },
+
+    {
+      title: "Adress",
+      dataIndex: "Osoite",
+      width: 100,
+      fixed: "left",
+    },
+    {
+      title: "City",
+      dataIndex: "Kaupunki",
+      width: 100,
+      fixed: "left",
+    },
+    {
+      title: "Bike capacity",
+      dataIndex: "Kapasiteet",
+      width: 100,
+      fixed: "left",
+    },
+  ];
+
   // Function to filter the station list based on the search input value
 
   const filterdata = stationList.filter((station) =>
@@ -62,37 +93,12 @@ const Stationlist: React.FC<props> = () => {
       </div>
 
       {/* Table to display the station list */}
-      <table className="table table-striped table-bordered">
-        <thead>
-          <tr>
-            <th scope="col"> Fid</th>
+      <Table
+        columns={columns}
+        dataSource={filterdata}
+        pagination={{ pageSize: 30 }}
+      />
 
-            <th scope="col">Station Id </th>
-            <th scope="col"> Station Name </th>
-            <th scope="col"> Address</th>
-            <th scope="col"> Capcity</th>
-            <th scope="col"> X Coordinate </th>
-            <th scope="col"> Y Coordinate</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filterdata.map((station, index) => (
-            <tr key={index}>
-              <td>{station.Fid}</td>
-              <td>{station.Id}</td>
-              <td>
-                <Link style={{ textDecoration: "none" }} to={`${station.Nimi}`}>
-                  {station.Nimi}
-                </Link>
-              </td>
-              <td>{station.Osoite}</td>
-              <td>{station.Kapasiteet}</td>
-              <td>{station.x}</td>
-              <td>{station.y}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
       <p style={{ fontSize: "10px", margin: "5px" }}>
         @Data source Helsinki City Bike, covers the period of May to July 2021.
       </p>

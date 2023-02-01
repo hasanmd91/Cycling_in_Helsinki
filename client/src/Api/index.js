@@ -1,5 +1,5 @@
 import axios from "axios";
-const url = " http://localhost:3001/home";
+const url = " https://helisinkicitybike.onrender.com/home";
 
 export const getStationDetails = () => axios.get(`${url}/stations`);
 export const getSingleStation = (paramas) =>
