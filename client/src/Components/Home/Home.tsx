@@ -24,9 +24,8 @@ const Home = () => {
         <Typography>
           This application displays journey data that took place between May and
           July of 2021. The data includes information about stations located in
-          Helsinki and Espoo, as well as their locations. The data was sourced
-          from Helsinki City Bike. This project was developed by Hasan as a
-          pre-assignment for the Solita Dev Academy Finland 2023 program.
+          Helsinki and Espoo, as well as stations locations. The data was
+          sourced from Helsinki City Bike.
         </Typography>
       </Box>
     </Box>

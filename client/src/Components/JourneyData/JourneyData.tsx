@@ -52,10 +52,8 @@ const JourneyData: React.FC = () => {
       <table className="table table-striped table-bordered">
         <thead>
           <tr>
-            <th> Departure Station Id</th>
             <th> Departure time</th>
             <th> Departure Station Name</th>
-            <th> Return Station Id</th>
             <th> Return time</th>
             <th> Return Station Name</th>
             <th> Distance</th>
@@ -65,10 +63,8 @@ const JourneyData: React.FC = () => {
         <tbody>
           {journeyDetails.map((item, index) => (
             <tr key={index}>
-              <td>{item.Departure_Station_Id}</td>
               <td>{item.Departure_time}</td>
               <td>{item.Departure_Station_Name}</td>
-              <td>{item.Return_Station_Id}</td>
               <td>{item.Return_time}</td>
               <td>{item.Return_Station_Name}</td>
               <td>{(item.Distance / 1000).toFixed(2)}km</td>

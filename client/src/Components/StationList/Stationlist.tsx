@@ -1,7 +1,8 @@
-import { Box, CircularProgress, Paper } from "@mui/material";
+import { CircularProgress, Paper } from "@mui/material";
 import { useState, useEffect } from "react";
 import { getStationDetails } from "../../Api/index";
 import { Link } from "react-router-dom";
+import { ChangeEvent } from "react";
 
 export interface Stations {
   Fid: number;
@@ -19,6 +20,7 @@ interface props {}
 
 const Stationlist: React.FC<props> = () => {
   const [stationList, setStationList] = useState<Stations[]>([]);
+  const [search, setSearch] = useState<string>("");
 
   const getStationList = async () => {
     const { data } = await getStationDetails();
@@ -29,11 +31,32 @@ const Stationlist: React.FC<props> = () => {
     getStationList();
   }, []);
 
+  // serach function
+
+  const filterdata = stationList.filter((station) =>
+    station.Nimi.toLowerCase().includes(search.toLowerCase())
+  );
+
   if (!stationList.length) {
     return <CircularProgress />;
   }
   return (
     <div className="container mt-5">
+      <div className="input-group mb-3">
+        <span className="input-group-text" id="inputGroup-sizing-default">
+          Search
+        </span>
+        <input
+          placeholder=" Enter Station Name"
+          type="text"
+          className="form-control"
+          aria-label="Sizing example input"
+          aria-describedby="inputGroup-sizing-default"
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            setSearch(e.target.value as string)
+          }
+        />
+      </div>
       <table className="table table-striped table-bordered">
         <thead>
           <tr>
@@ -48,7 +71,7 @@ const Stationlist: React.FC<props> = () => {
           </tr>
         </thead>
         <tbody>
-          {stationList.map((station, index) => (
+          {filterdata.map((station, index) => (
             <tr key={index}>
               <td>{station.Fid}</td>
               <td>{station.Id}</td>
