@@ -1,6 +1,8 @@
 import { Box, Button, Typography } from "@mui/material";
 import Bike from "../../assets/Bike.svg";
 
+// Home component for basic info about the application
+
 const Home = () => {
   return (
     <Box
@@ -27,6 +29,14 @@ const Home = () => {
           Helsinki and Espoo, as well as stations locations. The data was
           sourced from Helsinki City Bike.
         </Typography>
+        <Button
+          variant="contained"
+          color={"inherit"}
+          href={"/stations"}
+          sx={{ marginTop: "15px" }}
+        >
+          Lets get started
+        </Button>
       </Box>
     </Box>
   );

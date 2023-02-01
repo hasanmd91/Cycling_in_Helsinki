@@ -1,7 +1,6 @@
-import { AppBar, Typography, Box } from "@mui/material";
+import { AppBar, Box } from "@mui/material";
 import { NavLink } from "react-router-dom";
-import DirectionsBikeIcon from "@mui/icons-material/DirectionsBike";
-
+// AppBar component for navigate to pages
 const Navbar: React.FC = () => {
   return (
     <AppBar
@@ -23,24 +22,22 @@ const Navbar: React.FC = () => {
           gap: "20px",
         }}
       >
-        <DirectionsBikeIcon sx={{ color: "yellow" }} />
-        <DirectionsBikeIcon sx={{ color: "yellow", marginLeft: "10px" }} />
         <NavLink to="/" style={{ textDecoration: "none" }}>
-          <Typography variant="h5" align="center" color="#f5f5f5">
+          <button type="button" className="btn btn-dark">
             Home
-          </Typography>
+          </button>
         </NavLink>
 
         <NavLink to="/journey" style={{ textDecoration: "none" }}>
-          <Typography variant="h5" align="center" color="#f5f5f5">
+          <button type="button" className="btn btn-dark">
             Journeys
-          </Typography>
+          </button>
         </NavLink>
 
         <NavLink to="/stations" style={{ textDecoration: "none" }}>
-          <Typography variant="h5" align="center" color="#f5f5f5">
+          <button type="button" className="btn btn-dark">
             Stations
-          </Typography>
+          </button>
         </NavLink>
       </Box>
     </AppBar>

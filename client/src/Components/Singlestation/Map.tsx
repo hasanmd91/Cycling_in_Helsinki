@@ -18,7 +18,7 @@ const Map: React.FC<props> = ({ x, y, title }) => {
 };
 
 const LocationMap: React.FC<props> = ({ x, y, title }) => {
-  const center = useMemo(() => ({ lng: x, lat: y }), []);
+  const center = useMemo(() => ({ lng: x, lat: y }), [x, y]);
 
   return (
     <GoogleMap

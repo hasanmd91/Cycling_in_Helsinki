@@ -4,6 +4,7 @@ import { getStationDetails } from "../../Api/index";
 import { Link } from "react-router-dom";
 import { ChangeEvent } from "react";
 
+// Define the interface for the station data
 export interface Stations {
   Fid: number;
   Id: number;
@@ -18,25 +19,27 @@ export interface Stations {
 
 interface props {}
 
+// The Stationlist component,  displays a list of station data
 const Stationlist: React.FC<props> = () => {
   const [stationList, setStationList] = useState<Stations[]>([]);
   const [search, setSearch] = useState<string>("");
 
-  const getStationList = async () => {
-    const { data } = await getStationDetails();
-    setStationList(data);
-  };
+  //Use effect hook & Async function to fetch the station details from the API
 
   useEffect(() => {
+    const getStationList = async () => {
+      const { data } = await getStationDetails();
+      setStationList(data);
+    };
     getStationList();
   }, []);
 
-  // serach function
+  // Function to filter the station list based on the search input value
 
   const filterdata = stationList.filter((station) =>
     station.Nimi.toLowerCase().includes(search.toLowerCase())
   );
-
+  // If there is no data yet, show a loading spinner
   if (!stationList.length) {
     return <CircularProgress />;
   }
@@ -57,6 +60,8 @@ const Stationlist: React.FC<props> = () => {
           }
         />
       </div>
+
+      {/* Table to display the station list */}
       <table className="table table-striped table-bordered">
         <thead>
           <tr>
