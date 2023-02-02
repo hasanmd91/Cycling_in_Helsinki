@@ -43,6 +43,14 @@ const Stationlist: React.FC<props> = () => {
       dataIndex: "Nimi",
       width: 100,
       fixed: "left",
+      render: (Nimi: string) => (
+        <Link
+          to={`/stations/${Nimi}`}
+          style={{ textDecoration: "none", color: "Highlight" }}
+        >
+          {Nimi}{" "}
+        </Link>
+      ),
     },
 
     {
