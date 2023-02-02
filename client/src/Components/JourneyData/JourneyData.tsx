@@ -1,5 +1,8 @@
 import { CircularProgress } from "@mui/material";
 import { useEffect, useState } from "react";
+import type { ColumnsType } from "antd/es/table";
+import { Table } from "antd";
+
 import axios from "axios";
 
 interface JourneyDetail {
@@ -17,20 +20,59 @@ const JourneyData: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [itemsPerPage, setItemsPerPage] = useState<number>(20);
   const [journeyDetails, setJourneyDetails] = useState<JourneyDetail[]>([]);
-  const [pageNumber, setPageNumber] = useState<number[]>([1, 2, 3, 4, 5]);
   const [searchQuery, setSearchQuery] = useState("");
 
+  const fetchData = async () => {
+    const { data } = await axios.get(
+      `https://helisinkicitybike.onrender.com/home/journey/?page=${currentPage}&perPage=${itemsPerPage}&search=${searchQuery}
+      `
+    );
+    setJourneyDetails(data);
+    console.log(data);
+  };
   useEffect(() => {
-    const fetchData = async () => {
-      const { data } = await axios.get(
-        `https://helisinkicitybike.onrender.com/home/journey/?page=${currentPage}&perPage=${itemsPerPage}&search=${searchQuery}
-        `
-      );
-      setJourneyDetails(data);
-    };
-
     fetchData();
-  }, [currentPage, itemsPerPage, searchQuery]);
+  }, [searchQuery]);
+
+  const columns: ColumnsType<JourneyDetail> = [
+    {
+      title: "Departure time",
+      dataIndex: "Departure_time",
+      width: 100,
+      fixed: "left",
+    },
+
+    {
+      title: "Departure Station Name",
+      dataIndex: "Departure_Station_Name",
+      width: 100,
+      fixed: "left",
+    },
+    {
+      title: "Return time",
+      dataIndex: "Return_time",
+      width: 100,
+      fixed: "left",
+    },
+    {
+      title: "Return Station Name ",
+      dataIndex: "Return_Station_Name",
+      width: 100,
+      fixed: "left",
+    },
+    {
+      title: " Distance ",
+      dataIndex: "Distance",
+      width: 100,
+      fixed: "left",
+    },
+    {
+      title: "Duration ",
+      dataIndex: "Duration",
+      width: 100,
+      fixed: "left",
+    },
+  ];
 
   if (!journeyDetails.length) return <CircularProgress />;
   return (
@@ -48,60 +90,8 @@ const JourneyData: React.FC = () => {
           onChange={(e) => setSearchQuery(e.target.value)}
         />
       </div>
+      <Table columns={columns} dataSource={journeyDetails} pagination={{}} />
 
-      <table className="table table-striped table-bordered">
-        <thead>
-          <tr>
-            <th> Departure time</th>
-            <th> Departure Station Name</th>
-            <th> Return time</th>
-            <th> Return Station Name</th>
-            <th> Distance</th>
-            <th> Duration</th>
-          </tr>
-        </thead>
-        <tbody>
-          {journeyDetails.map((item, index) => (
-            <tr key={index}>
-              <td>{item.Departure_time}</td>
-              <td>{item.Departure_Station_Name}</td>
-              <td>{item.Return_time}</td>
-              <td>{item.Return_Station_Name}</td>
-              <td>{(item.Distance / 1000).toFixed(2)}km</td>
-              <td>{(item.Duration / 60).toFixed(2)}min </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <div>
-        {pageNumber.map((number) => (
-          <button
-            className="btn btn-outline-dark"
-            key={number}
-            onClick={() => setCurrentPage(number)}
-          >
-            {number}
-          </button>
-        ))}
-        <button
-          className="btn btn-outline-dark"
-          onClick={() => setCurrentPage(currentPage + 1)}
-        >
-          ....
-        </button>
-        <button
-          className="btn btn-outline-dark"
-          onClick={() => setCurrentPage(currentPage - 1)}
-        >
-          Previous
-        </button>
-        <button
-          className="btn btn-outline-dark"
-          onClick={() => setCurrentPage(currentPage + 1)}
-        >
-          Next
-        </button>
-      </div>
       <p style={{ fontSize: "10px", marginTop: "5px" }}>
         @Data source Helsinki City Bike, covers the period of May to July 2021.
       </p>

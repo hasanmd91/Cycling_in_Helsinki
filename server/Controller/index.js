@@ -5,8 +5,8 @@ import async from "async";
 
 export const getJourneyDetails = async (req, res) => {
   try {
-    const page = parseInt(req.query.page) || 1;
-    const perPage = parseInt(req.query.perPage) || 20;
+    const page = parseInt(req.query.page || 1);
+    const perPage = parseInt(req.query.perPage || 10);
     const search = req.query.search || "";
 
     let JourneyDetails = await journey_details
@@ -20,7 +20,11 @@ export const getJourneyDetails = async (req, res) => {
       JourneyDetails = await journey_details.find().limit(perPage);
     }
 
-    res.status(200).json(JourneyDetails);
+    const totalpages = Math.ceil(
+      (await journey_details.countDocuments()) / perPage
+    );
+
+    res.status(200).json({ JourneyDetails, totalpages });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Error retrieving Journey Details" });
