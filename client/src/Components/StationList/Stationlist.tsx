@@ -31,8 +31,12 @@ const Stationlist: React.FC<props> = () => {
 
   useEffect(() => {
     const getStationList = async () => {
-      const { data } = await getStationDetails();
-      setStationList(data);
+      try {
+        const { data } = await getStationDetails();
+        setStationList(data);
+      } catch (error) {
+        alert(error);
+      }
     };
     getStationList();
   }, []);

@@ -18,16 +18,25 @@ const Home = () => {
       <Box>
         <img src={Bike} alt="bike" height={300} />
       </Box>
-      <Box width={400} textAlign="justify">
+      <Box width={700} textAlign="justify">
         <Typography variant="h6" sx={{ color: "black", fontWeight: "bold" }}>
           {" "}
           Welcome To Helsinki City Bike{" "}
         </Typography>
         <Typography>
-          This application displays journey data that took place between May and
-          July of 2021. The data includes information about stations located in
-          Helsinki and Espoo, as well as stations locations. The data was
-          sourced from Helsinki City Bike.
+          This application provides bike sharing journey data from the Helsinki
+          City Bike during the months of May to July in 2021. The application
+          displays various statistics about bike journeys made by users,
+          including information such as the station's address, capacity, number
+          of departure journeys, number of return journeys, and average
+          distances for departure and return journeys. The data is presented in
+          a table format, making it easy to compare the statistics of different
+          stations. Additionally, the application features an interactive map
+          that displays the location of each station, allowing users to
+          visualize the bike journey data in a geographical context. The
+          user-friendly interface and the ability to access and explore the data
+          easily makes this application a valuable tool for understanding and
+          analyzing bike sharing patterns in the Helsinki and Espoo areas.
         </Typography>
         <Button
           variant="contained"

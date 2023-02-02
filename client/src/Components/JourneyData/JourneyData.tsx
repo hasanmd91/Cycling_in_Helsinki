@@ -42,7 +42,7 @@ const JourneyData: React.FC = () => {
 
   useEffect(() => {
     fetchData(1);
-  }, []);
+  }, [searchQuery]);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -81,12 +81,14 @@ const JourneyData: React.FC = () => {
       dataIndex: "Distance",
       width: 100,
       fixed: "left",
+      render: (distance: number) => `${(distance / 1000).toFixed(2)} km`,
     },
     {
       title: "Duration ",
       dataIndex: "Duration",
       width: 100,
       fixed: "left",
+      render: (duration: number) => `${(duration / 60).toFixed(2)} min`,
     },
   ];
 
