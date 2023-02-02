@@ -2,6 +2,7 @@ import { CircularProgress } from "@mui/material";
 import { useEffect, useState } from "react";
 import type { ColumnsType } from "antd/es/table";
 import { Table } from "antd";
+import React from "react";
 
 import axios from "axios";
 
@@ -17,22 +18,28 @@ interface JourneyDetail {
 }
 
 const JourneyData: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const [itemsPerPage, setItemsPerPage] = useState<number>(20);
   const [journeyDetails, setJourneyDetails] = useState<JourneyDetail[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [totalPages, setTotalPages] = useState<number>(0);
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
-  const fetchData = async () => {
+  const fetchData = async (page: number) => {
     const { data } = await axios.get(
-      `https://helisinkicitybike.onrender.com/home/journey/?page=${currentPage}&perPage=${itemsPerPage}&search=${searchQuery}
-      `
+      `https://helisinkicitybike.onrender.com/home/journey/?page=${page}&perPage=20&search=${searchQuery}`
     );
-    setJourneyDetails(data);
-    console.log(data);
+
+    setJourneyDetails(data.JourneyDetails);
+    setTotalPages(data.totalpages);
   };
+
   useEffect(() => {
-    fetchData();
-  }, [searchQuery]);
+    fetchData(1);
+  }, []);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    fetchData(page);
+  };
 
   const columns: ColumnsType<JourneyDetail> = [
     {
@@ -90,7 +97,16 @@ const JourneyData: React.FC = () => {
           onChange={(e) => setSearchQuery(e.target.value)}
         />
       </div>
-      <Table columns={columns} dataSource={journeyDetails} pagination={{}} />
+      <Table
+        columns={columns}
+        dataSource={journeyDetails}
+        pagination={{
+          current: currentPage,
+          onChange: handlePageChange,
+          total: totalPages,
+          pageSize: 20,
+        }}
+      />
 
       <p style={{ fontSize: "10px", marginTop: "5px" }}>
         @Data source Helsinki City Bike, covers the period of May to July 2021.
