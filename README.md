@@ -80,5 +80,12 @@ This application is a pre-assignment project for Solita dev Academy 2023. This a
 
 ## FAQ
 
-- Because of limited cluster space I could only upload two datasets about the journey details to the database
-- Backend server might be really slow as I am using a shared CPU which basically a free service consider download the application and run locally
+- Because of limited cluster space I could only upload two datasets about the journey details to the database.
+- Backend server might be really slow as I am using a shared CPU which basically a free service consider download the application and run locally.
+
+## Screenshots
+
+<img src="client\images\home.png" />
+<img src="client\images\journey.png" />
+<img src="client\images\stationlist.png" />
+<img src="client\images\station.png" />
