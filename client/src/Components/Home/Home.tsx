@@ -41,7 +41,7 @@ const Home = () => {
         <Button
           variant="contained"
           color={"inherit"}
-          href={"/stations"}
+          href={"#"}
           sx={{ marginTop: "15px" }}
         >
           Lets get started
