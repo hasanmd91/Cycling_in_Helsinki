@@ -3,21 +3,21 @@ import async from "async";
 
 // This function retrieves all journey details from the journey_details collection and returns them in a JSON format
 
-// .skip((page - 1) * perPage)
-//.limit(perPage);
-//.limit(perPage);
 export const getJourneyDetails = async (req, res) => {
   try {
     const page = parseInt(req.query.page || 1);
-    const perPage = parseInt(req.query.perPage || 10);
+    const perPage = parseInt(req.query.perPage || 100);
     const search = req.query.search || "";
 
-    let JourneyDetails = await journey_details.find({
-      Departure_Station_Name: { $regex: search, $options: "i" },
-    });
+    let JourneyDetails = await journey_details
+      .find({
+        Departure_Station_Name: { $regex: search, $options: "i" },
+      })
+      .skip((page - 1) * perPage)
+      .limit(perPage);
 
     if (!JourneyDetails.length) {
-      JourneyDetails = await journey_details.find();
+      JourneyDetails = await journey_details.find().limit(perPage);
     }
 
     const totalpages = Math.ceil(
