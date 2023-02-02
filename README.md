@@ -86,6 +86,6 @@ This application is a pre-assignment project for Solita dev Academy 2023. This a
 ## Screenshots
 
 <img src="client\images\home.png" />
-<img src="client\images\journey.png" />
+<img src="client\images\journeylist.png" />
 <img src="client\images\stationlist.png" />
 <img src="client\images\station.png" />
