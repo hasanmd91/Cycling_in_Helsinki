@@ -10,6 +10,7 @@ This application is a pre-assignment project for Solita dev Academy 2023. This a
 - The station table shows the station list and some details
 - Singel station views show the Station name address
 - Total number of journeys starting from the station and also ending at the station
+- Code base is clean that anyone can understand and tried to optimize the code as much as I could.
 
 ## Additional Features
 
@@ -79,4 +80,5 @@ This application is a pre-assignment project for Solita dev Academy 2023. This a
 
 ## FAQ
 
-- Because of 512MB cluster space I could only upload two datasets about the journey details to the database
+- Because of limited cluster space I could only upload two datasets about the journey details to the database
+- Backend server might be really slow as I am using a shared CPU which basically a free service consider download the application and run locally

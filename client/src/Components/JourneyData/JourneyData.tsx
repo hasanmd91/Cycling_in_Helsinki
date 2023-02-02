@@ -6,6 +6,7 @@ import React from "react";
 
 import axios from "axios";
 
+// Define the shape of JourneyDetail object with its properties
 interface JourneyDetail {
   Departure_time: String;
   Return_time: String;
@@ -23,14 +24,21 @@ const JourneyData: React.FC = () => {
   const [totalPages, setTotalPages] = useState<number>(0);
   const [currentPage, setCurrentPage] = useState<number>(1);
 
+  // data fetch function
   const fetchData = async (page: number) => {
-    const { data } = await axios.get(
-      `https://helisinkicitybike.onrender.com/home/journey/?page=${page}&perPage=20&search=${searchQuery}`
-    );
+    try {
+      const { data } = await axios.get(
+        `https://helisinkicitybike.onrender.com/home/journey/?page=${page}&perPage=20&search=${searchQuery}`
+      );
 
-    setJourneyDetails(data.JourneyDetails);
-    setTotalPages(data.totalpages);
+      setJourneyDetails(data.JourneyDetails);
+      setTotalPages(data.totalpages);
+    } catch (error) {
+      alert(error);
+    }
   };
+
+  // useffect hood invoke fetch function
 
   useEffect(() => {
     fetchData(1);
@@ -41,6 +49,7 @@ const JourneyData: React.FC = () => {
     fetchData(page);
   };
 
+  // table colums declaration
   const columns: ColumnsType<JourneyDetail> = [
     {
       title: "Departure time",

@@ -6,7 +6,7 @@ import async from "async";
 export const getJourneyDetails = async (req, res) => {
   try {
     const page = parseInt(req.query.page || 1);
-    const perPage = parseInt(req.query.perPage || 100);
+    const perPage = parseInt(req.query.perPage || 20);
     const search = req.query.search || "";
 
     let JourneyDetails = await journey_details
