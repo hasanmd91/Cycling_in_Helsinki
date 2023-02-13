@@ -1,9 +1,8 @@
+import React from "react";
 import { CircularProgress } from "@mui/material";
 import { useEffect, useState } from "react";
 import type { ColumnsType } from "antd/es/table";
 import { Table } from "antd";
-import React from "react";
-
 import axios from "axios";
 
 // Define the shape of JourneyDetail object with its properties
