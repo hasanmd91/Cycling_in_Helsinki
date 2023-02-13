@@ -12,8 +12,10 @@ interface props {
 
 const Map: React.FC<props> = ({ x, y, title }) => {
   // useLoadScript is a hook to load the Google Maps JavaScript API
+  const apiKey: any = process.env.REACT_APP_API_KEY;
+
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "AIzaSyBcoxSMxAWa8QurUTzORx-9GQLqr84wqbg",
+    googleMapsApiKey: apiKey,
   });
 
   if (!isLoaded) return <CircularProgress />;
