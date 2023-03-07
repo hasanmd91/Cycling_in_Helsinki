@@ -1,3 +1,5 @@
+[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/summary/new_code?id=hasanmd91_Cycling_in_Helsinki)
+
 # Helsinki city bike app (Dev Academy pre-assignment)
 
 This application is a pre-assignment project for Solita dev Academy 2023. This application displays journey data provided by the Helsinki city bike. The data includes information about stations located in Helsinki and Espoo. This application code base is clean that anyone can understand and I tried to optimize the code as much as I could.
