@@ -1,4 +1,4 @@
-[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/summary/new_code?id=hasanmd91_Cycling_in_Helsinki)
+[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/summary/new_code?id=hasanmd91_Cycling_in_Helsinki) <br>
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=hasanmd91_Cycling_in_Helsinki&metric=bugs)](https://sonarcloud.io/summary/new_code?id=hasanmd91_Cycling_in_Helsinki)
 
 # Helsinki city bike app (Dev Academy pre-assignment)
